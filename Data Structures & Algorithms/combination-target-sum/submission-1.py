@@ -1,0 +1,28 @@
+class Solution:
+    def combinationSum(self, nums: List[int], target: int) -> List[List[int]]:
+        
+        res = []
+
+        def backtrack(index, path):
+            
+            if index == len(nums) or sum(path) >= target:
+                if sum(path) == target:
+                    res.append(path.copy())
+                return
+            
+            #inserting next number
+            #removing next number
+            #inserting dup of current number
+
+            path.append(nums[index]) 
+                
+            backtrack(index, path)
+
+            path.pop()
+            backtrack(index + 1, path)
+
+            
+        
+        backtrack(0,[])
+
+        return res
